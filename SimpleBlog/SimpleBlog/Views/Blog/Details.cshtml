@@ -1,0 +1,64 @@
+﻿@model SimpleBlog.Models.BlogModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Blog</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.SelectedBlog.Author)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SelectedBlog.Author)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.SelectedBlog.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SelectedBlog.Title)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.SelectedBlog.Content)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SelectedBlog.Content)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.SelectedBlog.CreatedAt)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SelectedBlog.CreatedAt)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.SelectedBlog.SubscriberAmount)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SelectedBlog.SubscriberAmount)
+        </dd>
+    </dl>
+</div>
+<div>
+    <h4>Comments</h4>
+    @if (Model.SelectedBlog.Comments != null && Model.SelectedBlog.Comments.Any())
+    {
+        <ul>
+            @foreach (var comment in Model.SelectedBlog.Comments)
+            {
+                <li>@comment.Author: @comment.Content <br> @comment.CreatedAt</li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p>No comments yet.</p>
+    }
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.SelectedBlog.Id">Edit</a> |
+    <a asp-action="List">Back to List</a>
+</div>

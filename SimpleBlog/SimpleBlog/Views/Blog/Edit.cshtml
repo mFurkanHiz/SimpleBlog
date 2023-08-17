@@ -1,0 +1,47 @@
+﻿@model SimpleBlog.Models.BlogModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Blog</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+
+        <form asp-action="Edit" method="post">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="SelectedBlog.Id" />
+            <input type="hidden" asp-for="SelectedBlog.Author" />
+            <input type="hidden" asp-for="SelectedBlog.CreatedAt" />
+            <input type="hidden" asp-for="SelectedBlog.SubscriberAmount" />
+            <div class="form-group">
+                <label asp-for="SelectedBlog.Title" class="control-label"></label>
+                <input asp-for="SelectedBlog.Title" class="form-control" />
+                <span asp-validation-for="SelectedBlog.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SelectedBlog.Content" class="control-label"></label>
+                <textarea asp-for="SelectedBlog.Content" class="form-control"></textarea>
+                <span asp-validation-for="SelectedBlog.Content" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Edit" class="btn btn-primary" />
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<div>
+    <a asp-action="List">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
